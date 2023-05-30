@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="text-white body-font bg-[#1D267D] ">
+        <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+            <img src="../static/logo1.webp" alt="logo1" class="max-w-[60px]">
+            <span class="ml-3 text-xl">Heart Disease Prediction</span>
+          </a>
+          <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+            <a class="mr-5 text-red-600  text-[20px] cursor-pointer" href="/">Home</a>
+            <a class="mr-5 hover:text-red-600 cursor-pointer" href="/about">About</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="flex flex-col justify-center ">
+
+        <div class="container flex  justify-center mx-auto px-4 md:px-0 py-5 ">
+            <h1 class="text-3xl font-semibold items-center">Enter Patient's details</h1>
+        </div>
+
+        <form class="form flex flex-col grid justify-items-center" action="/predict" method="POST">
+
+            <div class="flex justify-center grid md:grid-cols-4 sm:grid-cols-2 min-[0px]:grid-cols-1 bg-[#00C4FF] p-5 rounded-lg border border-black">
+                <div class="age relative flex flex-col items-center m-3">
+                    <label for="age" class="age block mb-2 text-sm font-medium text-gray-900 text-center">Age</label>
+                    <input type="number" name="age" id="age" class="block p-2  text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[175px] " min="1" max="100" required>
+                </div>
+                <div class="sex flex flex-col items-center m-3">
+                    <label for="sex" class="sex block mb-2 text-sm font-medium text-gray-900 text-center">Sex (1->male | 0-> Female)</label>
+                    <input type="number" name="sex" id="sex" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[175px]" min="0" max="1" required>
+                </div>
+                <div class="cp flex flex-col items-center m-3">
+                    <label for="cp" class="cp block mb-2 text-sm font-medium text-gray-900 text-center">Chest pain type (0-4)</label>
+                    <input type="number" name="cp" id="cp" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[175px]" min="0" max="4" required>
+                </div>
+                <div class="trestbps flex flex-col items-center m-3">
+                    <label for="trestbps" class="trestbps block mb-2 text-sm font-medium text-gray-900 text-center">Resting Blood Pressure</label>
+                    <input type="number" name="trestbps" id="trestbps" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="chol flex flex-col items-center m-3">
+                    <label for="chol" class="chol block mb-2 text-sm font-medium text-gray-900 text-center">Serum Chorestrol in mg/dl</label>
+                    <input type="number" name="chol" id="chol" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="fbs flex flex-col items-center m-3">
+                    <label for="fbs" class="fbs block mb-2 text-sm font-medium text-gray-900 text-center">Fasting blood sugar</label>
+                    <input type="number" name="fbs" id="fbs" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="restecg flex flex-col items-center m-3">
+                    <label for="restecg" class="restecg block mb-2 text-sm font-medium text-gray-900 text-center">Resting electrocardiographic results</label>
+                    <input type="number" name="restecg" id="restecg" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="thalach flex flex-col items-center m-3">
+                    <label for="thalach" class="thalach block mb-2 text-sm font-medium text-gray-900 text-center">Maximum heart rate achieved</label>
+                    <input type="number" name="thalach" id="thalach" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="exang flex flex-col items-center m-3">
+                    <label for="exang" class="exang block mb-2 text-sm font-medium text-gray-900 text-center">Exercise induced angina</label>
+                    <input type="number" name="exang" id="exang" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="oldpeak flex flex-col items-center m-3">
+                    <label for="oldpeak" class="oldpeak block mb-2 text-sm font-medium text-gray-900 text-center">Old peak</label>
+                    <input type="text" name="oldpeak" id="oldpeak" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="slope flex flex-col items-center m-3">
+                    <label for="slope" class="slope block mb-2 text-sm font-medium text-gray-900 text-center">Slope of the peak exercise ST segment</label>
+                    <input type="number" name="slope" id="slope" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                </div>
+                <div class="ca flex flex-col items-center m-3">
+                    <label for="ca" class="ca block mb-2 text-sm font-medium text-gray-900 text-center">Number of major vessels(0-3) colored by fluoroscopy</label>
+                    <input type="number" name="ca" id="ca" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[175px]" min="0" max="3" required>
+                </div>
+                <div class="thal flex flex-col items-center m-3">
+                    <label for="thal" class="thal block mb-2 text-sm font-medium text-gray-900 text-center">Thalassemia</label>
+                    <input type="number" name="thal" id="thal" class="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-white sm:text-sm focus:ring-blue-500 focus:border-blue-500  dark:focus:ring-blue-500 dark:focus:border-blue-500 " required>
+                </div>
+            </div>
+            <button type="submit" class="text-white font-mono bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-2xl p-5 py-2.5 text-center m-2 mb-2 w-40 tracking-wider ">Predict</button>            
+        </form> 
+
+        {% if label %}
+            {% if label==-1 %}
+                <div class="p-3 ml-5 mr-5 mb-5 border border-black text-3xl bg-green-400 rounded-lg ">
+                    <h3 class="text-center text-blue-700">The Person does not have heart condition </h3>
+                </div>      
+            {% else %}
+                <div class="p-3 ml-5 mr-5 mb-5 border border-black text-3xl bg-green-400 rounded-lg ">
+                    <h3 class="text-center text-rose-600">The Person have heart condition</h3>
+                </div>   
+            {% endif %}
+        {% endif %}
+        </div>
+
+
+
+    
+
+      
+       
+</body>
+</html>
+
